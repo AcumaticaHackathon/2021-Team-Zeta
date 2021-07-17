@@ -8,6 +8,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Hackathon_21_110_0032", "Hackathon_21_110_0032\", "{2F3E1602-4F7B-4206-B991-AA3743D18B8D}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
+		ProjectReferences = "{f9d3a62b-a5ed-4d32-a72b-d80f2b8f9e99}|Hackathon.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_55653"
 		Debug.AspNetCompiler.PhysicalPath = "Hackathon_21_110_0032\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55653\"

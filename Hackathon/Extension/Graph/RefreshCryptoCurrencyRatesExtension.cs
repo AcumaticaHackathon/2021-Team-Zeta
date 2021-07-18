@@ -124,7 +124,7 @@ namespace Hackathon
                     name = "BTC";
 
                 var rateObj = curencyObj.First.First as JProperty;
-                var rateValue = rateObj.Value<string>(rateObj.Name);
+                var rateValue = rateObj.Value.ToString();
 
                 if (rateObj != null && Decimal.TryParse(rateValue, out var rate))
                 {

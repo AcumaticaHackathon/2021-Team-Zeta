@@ -1,3 +1,5 @@
 ﻿<Table TableName="CashAccount">
     <Column TableName="CashAccount" ColumnName="UsrTZAPIKey" ColumnType="string" AllowNull="True" MaxLength="19" DecimalPrecision="0" DecimalLength="0" IsNewColumn="True" IsUnicode="True" />
+    <Column TableName="CashAccount" ColumnName="UsrTZSecretKey" ColumnType="string" AllowNull="True" MaxLength="16" DecimalPrecision="0" DecimalLength="0" IsNewColumn="True" IsUnicode="True" />
+    <Column TableName="CashAccount" ColumnName="UsrTZWalletAddress" ColumnType="string" AllowNull="True" MaxLength="35" DecimalPrecision="0" DecimalLength="0" IsNewColumn="True" IsUnicode="True" />
 </Table>

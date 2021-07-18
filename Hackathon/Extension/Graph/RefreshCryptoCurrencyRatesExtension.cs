@@ -9,18 +9,25 @@ using PX.Objects.CM;
 using PX.Objects.CS;
 using BlockSharp;
 using RestSharp;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Hackathon
 {
     // Acuminator disable once PX1016 ExtensionDoesNotDeclareIsActiveMethod extension should be constantly active
     public class RefreshCryptoCurrencyRatesExtension : CryptoGraphExtensionBase<RefreshCurrencyRates>
     {
-        private readonly RestClient _client = new RestClient
+        private RestClient _client = new RestClient
         {
             BaseUrl = new Uri("https://api.coingecko.com/api/v3/")
         };
 
-        public delegate Dictionary<string, decimal> GetRatesFromServiceDelegate(RefreshFilter filter, List<RefreshRate> list, DateTime date);
+		public override void Initialize()
+		{
+			base.Initialize();
+		}
+
+		public delegate Dictionary<string, decimal> GetRatesFromServiceDelegate(RefreshFilter filter, List<RefreshRate> list, DateTime date);
 
 		[PXOverride]
         public virtual IEnumerable currencyRateList(Func<IEnumerable> baseDelegate)
@@ -94,42 +101,38 @@ namespace Hackathon
             restRequest = restRequest.AddParameter("vs_currencies", filter.CuryID)
                                      .AddParameter("ids", idsString);
 
-            if (cryptoCurrencyRates.Count == 1)
+            var ratesResponse = _client.Execute(restRequest);
+
+            if (ratesResponse == null)
+                return cryptoCurrencyRatesFromExternalApi;
+
+            if (ratesResponse.ErrorException != null)
             {
-                var ratesResponse = _client.Execute<PriceRequest>(restRequest);
-
-                if (ratesResponse == null)
-                    return cryptoCurrencyRatesFromExternalApi;
-
-                if (ratesResponse.ErrorException != null)
-                {
-                    throw ratesResponse.ErrorException;
-                }
-
-                var currency = ratesResponse.Data.Currency;
-                cryptoCurrencyRatesFromExternalApi.Add(currency.CryproCurrencyName, currency.Rate.Rate);
-
-                return cryptoCurrencyRatesFromExternalApi;
+                throw ratesResponse.ErrorException;
             }
-            else
+
+            JObject json = (JObject)JsonConvert.DeserializeObject(ratesResponse.Content);
+
+            if (json == null)
+                return cryptoCurrencyRatesFromExternalApi;
+
+            foreach (var curencyObj in json.Children().OfType<JProperty>())
 			{
-                var ratesResponse = _client.Execute<PricesRequest>(restRequest);
+                string name = curencyObj.Name;
 
-                if (ratesResponse == null)
-                    return cryptoCurrencyRatesFromExternalApi;
+                if (name == "bitcoin")
+                    name = "BTC";
 
-                if (ratesResponse.ErrorException != null)
+                var rateObj = curencyObj.First.First as JProperty;
+                var rateValue = rateObj.Value<string>(rateObj.Name);
+
+                if (rateObj != null && Decimal.TryParse(rateValue, out var rate))
                 {
-                    throw ratesResponse.ErrorException;
-                }
-
-                foreach (CryptoCurrencyRateInfo currency in ratesResponse.Data.Currencies)
-                {
-                    cryptoCurrencyRatesFromExternalApi.Add(currency.CryproCurrencyName, currency.Rate.Rate);
-                }
-
-                return cryptoCurrencyRatesFromExternalApi;
+                    cryptoCurrencyRatesFromExternalApi.Add(name, rate);
+                }          
             }
+
+			return cryptoCurrencyRatesFromExternalApi;
         }
     }
 }

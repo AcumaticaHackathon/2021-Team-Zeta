@@ -11,8 +11,13 @@ using RestSharp;
 
 namespace Hackathon
 {
-    public class PricesRequest
+    public class PriceRequest
     { 
+        public CryptoCurrencyRateInfo Currency { get; }
+    }
+
+    public class PricesRequest
+    {
         public List<CryptoCurrencyRateInfo> Currencies { get; }
     }
 

@@ -69,7 +69,7 @@ namespace Hackathon
                                                                        GetRatesFromServiceDelegate getRatesFromServiceBaseMethod)
         {
             var ratesByIsCryptoCurrencyFlag = ratesToRefresh.ToLookup(refreshRate => refreshRate.GetIsCryptoCurrency(Base.CurrencyRateList.Cache));
-            var cryptoCurrencyRates = ratesByIsCryptoCurrencyFlag[true];
+            var cryptoCurrencyRates = ratesByIsCryptoCurrencyFlag[true].ToList();
             List<RefreshRate> nonCryptoCurrencyRates = ratesByIsCryptoCurrencyFlag[false].ToList();
 
             Dictionary<string, decimal> nonCryptoCurrencyRatesFromExternalApi = getRatesFromServiceBaseMethod(filter, nonCryptoCurrencyRates, date);
@@ -81,7 +81,7 @@ namespace Hackathon
             return ratesFromExternalApi;
         }
 
-        protected virtual Dictionary<string, decimal> RatesFromExternalApiForCryptoCurrencies(RefreshFilter filter, IEnumerable<RefreshRate> cryptoCurrencyRates, DateTime date)
+        protected virtual Dictionary<string, decimal> RatesFromExternalApiForCryptoCurrencies(RefreshFilter filter, List<RefreshRate> cryptoCurrencyRates, DateTime date)
         {
             var cryptoCurrencyRatesFromExternalApi = new Dictionary<string, decimal>();
 
@@ -94,22 +94,42 @@ namespace Hackathon
             restRequest = restRequest.AddParameter("vs_currencies", filter.CuryID)
                                      .AddParameter("ids", idsString);
 
-			var ratesResponse = _client.Execute<PricesRequest>(restRequest);
-
-            if (ratesResponse == null)
-                return cryptoCurrencyRatesFromExternalApi;
-
-            if (ratesResponse.ErrorException != null)
+            if (cryptoCurrencyRates.Count == 1)
             {
-                throw ratesResponse.ErrorException;
-            }
+                var ratesResponse = _client.Execute<PriceRequest>(restRequest);
 
-			foreach (CryptoCurrencyRateInfo currency in ratesResponse.Data.Currencies)
-			{
+                if (ratesResponse == null)
+                    return cryptoCurrencyRatesFromExternalApi;
+
+                if (ratesResponse.ErrorException != null)
+                {
+                    throw ratesResponse.ErrorException;
+                }
+
+                var currency = ratesResponse.Data.Currency;
                 cryptoCurrencyRatesFromExternalApi.Add(currency.CryproCurrencyName, currency.Rate.Rate);
-            }   
 
-            return cryptoCurrencyRatesFromExternalApi;
+                return cryptoCurrencyRatesFromExternalApi;
+            }
+            else
+			{
+                var ratesResponse = _client.Execute<PricesRequest>(restRequest);
+
+                if (ratesResponse == null)
+                    return cryptoCurrencyRatesFromExternalApi;
+
+                if (ratesResponse.ErrorException != null)
+                {
+                    throw ratesResponse.ErrorException;
+                }
+
+                foreach (CryptoCurrencyRateInfo currency in ratesResponse.Data.Currencies)
+                {
+                    cryptoCurrencyRatesFromExternalApi.Add(currency.CryproCurrencyName, currency.Rate.Rate);
+                }
+
+                return cryptoCurrencyRatesFromExternalApi;
+            }
         }
     }
 }

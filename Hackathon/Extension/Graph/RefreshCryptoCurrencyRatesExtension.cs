@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 using PX.Data;
-using PX.Objects.CA;
 using PX.Objects.CM;
-
-using System.Collections;
+using PX.Objects.CS;
 
 namespace Hackathon
 {
@@ -21,7 +20,36 @@ namespace Hackathon
 		[PXOverride]
 		public virtual IEnumerable currencyRateList(Func<IEnumerable> baseDelegate)
 		{
-			return baseDelegate.Invoke(); 
-		}
+            PXCache rateTypesCache = Base.Caches[typeof(CurrencyRateType)];
+
+            var currenciesWithRatesCombinations =
+                PXSelectJoin<CurrencyList,
+                   CrossJoin<CurrencyRateType>, Where<CurrencyRateType.refreshOnline, Equal<boolTrue>,
+                       And<CurrencyList.isActive, Equal<boolTrue>,
+                       And<CurrencyList.curyID, NotEqual<Current<RefreshFilter.curyID>>,
+                       And<
+                           Where<CurrencyRateType.curyRateTypeID, Equal<Current<RefreshFilter.curyRateTypeID>>, 
+                                Or<Current<RefreshFilter.curyRateTypeID>, IsNull>>>>>>>
+                    .Select(Base);
+
+            foreach (PXResult<CurrencyList, CurrencyRateType> res in currenciesWithRatesCombinations)
+            {
+                CurrencyList curr = res;
+                CurrencyRateType rateType = res;
+
+				RefreshRate rate = new RefreshRate
+				{
+					FromCuryID = curr.CuryID,
+					CuryRateType = rateType.CuryRateTypeID,
+					OnlineRateAdjustment = rateType.OnlineRateAdjustment
+				};
+
+                bool isCryptoCurrency = rateTypesCache.GetValueExt<CurrencyRateTypeCryptoExt.usrIsCryptoCurrency>(rateType) as bool? ?? false;
+                Base.CurrencyRateList.Cache.SetValue<RefreshRateCryptoExt.usrIsCryptoCurrency>(rate, isCryptoCurrency);
+
+				Base.CurrencyRateList.Cache.SetStatus(rate, PXEntryStatus.Held);
+                yield return rate;
+            }
+        }
 	}
 }

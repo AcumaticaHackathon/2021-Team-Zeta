@@ -9,8 +9,7 @@ using PX.Data.BQL;
 using PX.Objects.CM;
 
 namespace Hackathon
-{
-	
+{	
 	// Acuminator disable once PX1016 ExtensionDoesNotDeclareIsActiveMethod extension should be constantly active
 	public sealed class CurrencyRateTypeCryptoExt : PXCacheExtension<CurrencyRateType>
 	{
@@ -21,7 +20,7 @@ namespace Hackathon
 
 		[PXDBBool()]
 		[PXDefault(false)]
-		[PXUIField(DisplayName = "Is Crypto Currency")]
+		[PXUIField(DisplayName = "Is Crypto Currency", Enabled = false)]
 		public bool? UsrIsCryptoCurrency { get; set; }
 		#endregion
 	}

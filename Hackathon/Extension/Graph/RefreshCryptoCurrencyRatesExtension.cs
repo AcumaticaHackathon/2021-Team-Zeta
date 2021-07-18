@@ -7,20 +7,18 @@ using PX.Common;
 using PX.Data;
 using PX.Objects.CM;
 using PX.Objects.CS;
+using BlockSharp;
 
 namespace Hackathon
 {
     // Acuminator disable once PX1016 ExtensionDoesNotDeclareIsActiveMethod extension should be constantly active
-    public class RefreshCryptoCurrencyRatesExtension : PXGraphExtension<RefreshCurrencyRates>
+    public class RefreshCryptoCurrencyRatesExtension : CryptoGraphExtensionBase<RefreshCurrencyRates>
     {
         public delegate Dictionary<string, decimal> GetRatesFromServiceDelegate(RefreshFilter filter, List<RefreshRate> list, DateTime date);
 
-        //private const string ApiKey = "1fb1-ce42-104a-dd17";
+		private const string CryptoApiKey = "1fb1-ce42-104a-dd17";
 
-        //[PXOverride]
-        //public virtual string GetApiKey(Func<string> baseMethod) => ApiKey;
-
-        [PXOverride]
+		[PXOverride]
         public virtual IEnumerable currencyRateList(Func<IEnumerable> baseDelegate)
         {
             PXCache rateTypesCache = Base.Caches[typeof(CurrencyRateType)];
@@ -81,7 +79,24 @@ namespace Hackathon
 
         protected virtual Dictionary<string, decimal> RatesFromExternalApiForCryptoCurrencies(RefreshFilter filter, IEnumerable<RefreshRate> cryptoCurrencyRates, DateTime date)
         {
-            return new Dictionary<string, decimal>();
+            var cryptoCurrencyRatesFromExternalApi = new Dictionary<string, decimal>();
+            var cryptoClient = new BlockSharp.BlockSharp(CryptoApiKey);
+            BlockSharp.Responses.GetCurrentPrice response;
+
+            try
+            {
+                response = cryptoClient.GetCurrentPrice(filter.CuryID);
+            }
+            catch (Exception)
+            {
+               return cryptoCurrencyRatesFromExternalApi;
+            };
+
+            if (response == null)
+                return cryptoCurrencyRatesFromExternalApi;
+
+
+            return cryptoCurrencyRatesFromExternalApi;
         }
     }
 }

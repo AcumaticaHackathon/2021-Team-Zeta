@@ -50,6 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAC\Dummy.cs" />
+    <Compile Include="Extension\DAC\Dummy.cs" />
+    <Compile Include="Extension\Graph\Dummy.cs" />
+    <Compile Include="Graph\Dummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

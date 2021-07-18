@@ -4,11 +4,8 @@
 
 /.vs
 /Hackathon_21_110_0032
-/TemporaryAspFiles/Hackathon_21_110_0032/root/228e8bb7/f5bd2919
-/TemporaryAspFiles/Hackathon_21_110_0032/hackathon_21_110_0032/20bbc265/c53fb2b4
-/TemporaryAspFiles/Hackathon_21_110_0032/hackathon_21_110_0032/20bbc265/PAYROLLDOMAIN/assembly/dl3
+[Tt]emporaryAspFiles
 /packages
-/TemporaryAspFiles/Hackathon_21_110_0032/root/228e8bb7/_shadow/f5bd2919/13176
 
 # Build results
 [Dd]ebug/
@@ -23,7 +20,7 @@ bld/
 [Oo]bj/
 src/GitVersion.txt
 /BackUp/Sites/Hackathon_21_110_0032
-/Customization/Hackathon_21_110_0032/Hackathon_21_110_0032Validation
 /TemporaryAspFiles/Hackathon_21_110_0032
 /Hackathon/.vs/Hackathon
 /TemporaryAspFiles/Acu2021r110
+Customization

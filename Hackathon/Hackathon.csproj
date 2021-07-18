@@ -37,6 +37,18 @@
     <Reference Include="BouncyCastle.Crypto, Version=1.7.4137.9688, Culture=neutral, PublicKeyToken=a4292a325f69b123, processorArchitecture=MSIL">
       <HintPath>..\packages\BouncyCastle.1.7.0\lib\Net40-Client\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
+    <Reference Include="PX.Common">
+      <HintPath>..\Hackathon_21_110_0032\Bin\PX.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.Common.Std">
+      <HintPath>..\Hackathon_21_110_0032\Bin\PX.Common.Std.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.Data">
+      <HintPath>..\Hackathon_21_110_0032\Bin\PX.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="PX.Objects">
+      <HintPath>..\Hackathon_21_110_0032\Bin\PX.Objects.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
     </Reference>
@@ -51,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAC\Dummy.cs" />
+    <Compile Include="Extension\DAC\CashAccountCryptoExt.cs" />
     <Compile Include="Extension\DAC\Dummy.cs" />
     <Compile Include="Extension\Graph\Dummy.cs" />
     <Compile Include="Graph\Dummy.cs" />

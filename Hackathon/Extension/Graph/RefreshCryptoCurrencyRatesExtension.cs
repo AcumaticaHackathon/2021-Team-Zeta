@@ -83,7 +83,11 @@ namespace Hackathon
             Dictionary<string, decimal> cryptoCurrencyRatesFromExternalApi = RatesFromExternalApiForCryptoCurrencies(filter, cryptoCurrencyRates, date);
 
             var ratesFromExternalApi = nonCryptoCurrencyRatesFromExternalApi;
-            ratesFromExternalApi.AddRange(cryptoCurrencyRatesFromExternalApi);
+
+			foreach (var (name, rate) in cryptoCurrencyRatesFromExternalApi)
+			{
+                ratesFromExternalApi[name] = rate;
+            }
 
             return ratesFromExternalApi;
         }

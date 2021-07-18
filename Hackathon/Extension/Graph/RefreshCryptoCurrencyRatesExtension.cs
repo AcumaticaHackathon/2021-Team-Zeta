@@ -20,8 +20,8 @@ namespace Hackathon
 
 		[PXOverride]
 		public virtual IEnumerable currencyRateList(Func<IEnumerable> baseDelegate)
-		{ 
-			var 
+		{
+			return baseDelegate.Invoke(); 
 		}
 	}
 }

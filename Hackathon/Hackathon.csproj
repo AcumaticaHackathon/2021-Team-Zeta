@@ -81,6 +81,7 @@
     <Compile Include="Extension\Graph\CashAccountMaintExtension.cs" />
     <Compile Include="Graph\Dummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

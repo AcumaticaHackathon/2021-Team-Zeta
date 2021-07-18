@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Hackathon_21_110_0032", "..\Hackathon_21_110_0032\", "{2F3E1602-4F7B-4206-B991-AA3743D18B8D}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_55653"
+		Debug.AspNetCompiler.PhysicalPath = "..\Hackathon_21_110_0032\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55653\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_55653"
+		Release.AspNetCompiler.PhysicalPath = "..\Hackathon_21_110_0032\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55653\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "55653"
+		SlnRelativePath = "..\Hackathon_21_110_0032\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hackathon", "Hackathon.csproj", "{F9D3A62B-A5ED-4D32-A72B-D80F2B8F9E99}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F3E1602-4F7B-4206-B991-AA3743D18B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F3E1602-4F7B-4206-B991-AA3743D18B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F3E1602-4F7B-4206-B991-AA3743D18B8D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F3E1602-4F7B-4206-B991-AA3743D18B8D}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{F9D3A62B-A5ED-4D32-A72B-D80F2B8F9E99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9D3A62B-A5ED-4D32-A72B-D80F2B8F9E99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9D3A62B-A5ED-4D32-A72B-D80F2B8F9E99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9D3A62B-A5ED-4D32-A72B-D80F2B8F9E99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F1B9DD18-089D-499F-BED1-ECDE9ED7EC89}
+	EndGlobalSection
+EndGlobal

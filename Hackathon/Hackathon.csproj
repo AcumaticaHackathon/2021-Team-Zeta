@@ -49,8 +49,8 @@
     <Reference Include="PX.Objects">
       <HintPath>..\Hackathon_21_110_0032\Bin\PX.Objects.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp, Version=105.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -65,6 +65,7 @@
     <Compile Include="DAC\Dummy.cs" />
     <Compile Include="Extension\DAC\CashAccountCryptoExt.cs" />
     <Compile Include="Extension\DAC\Dummy.cs" />
+    <Compile Include="Extension\Graph\CashAccountMaintExtension.cs" />
     <Compile Include="Extension\Graph\Dummy.cs" />
     <Compile Include="Graph\Dummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

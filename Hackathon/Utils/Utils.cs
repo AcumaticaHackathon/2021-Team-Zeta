@@ -27,5 +27,9 @@ namespace Hackathon
         public static void SetIsCryptoCurrency(this RefreshRate refreshRate, PXCache cache, bool isCryptoCurrency) =>
            cache.CheckIfNull(nameof(cache))
                 .SetValue<RefreshRateCryptoExt.usrIsCryptoCurrency>(refreshRate, isCryptoCurrency);
+
+
+        public static string Join(this IEnumerable<string> strings, string separator) =>
+            string.Join(separator, strings);
     }
 }

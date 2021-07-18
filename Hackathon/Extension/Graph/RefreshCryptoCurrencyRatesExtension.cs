@@ -8,15 +8,19 @@ using PX.Data;
 using PX.Objects.CM;
 using PX.Objects.CS;
 using BlockSharp;
+using RestSharp;
 
 namespace Hackathon
 {
     // Acuminator disable once PX1016 ExtensionDoesNotDeclareIsActiveMethod extension should be constantly active
     public class RefreshCryptoCurrencyRatesExtension : CryptoGraphExtensionBase<RefreshCurrencyRates>
     {
-        public delegate Dictionary<string, decimal> GetRatesFromServiceDelegate(RefreshFilter filter, List<RefreshRate> list, DateTime date);
+        private readonly RestClient _client = new RestClient
+        {
+            BaseUrl = new Uri("https://api.coingecko.com/api/v3/")
+        };
 
-		private const string CryptoApiKey = "1fb1-ce42-104a-dd17";
+        public delegate Dictionary<string, decimal> GetRatesFromServiceDelegate(RefreshFilter filter, List<RefreshRate> list, DateTime date);
 
 		[PXOverride]
         public virtual IEnumerable currencyRateList(Func<IEnumerable> baseDelegate)
@@ -80,21 +84,30 @@ namespace Hackathon
         protected virtual Dictionary<string, decimal> RatesFromExternalApiForCryptoCurrencies(RefreshFilter filter, IEnumerable<RefreshRate> cryptoCurrencyRates, DateTime date)
         {
             var cryptoCurrencyRatesFromExternalApi = new Dictionary<string, decimal>();
-            var cryptoClient = new BlockSharp.BlockSharp(CryptoApiKey);
-            BlockSharp.Responses.GetCurrentPrice response;
 
-            try
+            IRestRequest restRequest = new RestRequest()
             {
-                response = cryptoClient.GetCurrentPrice(filter.CuryID);
-            }
-            catch (Exception)
-            {
-               return cryptoCurrencyRatesFromExternalApi;
+                Resource = "simple/price"
             };
 
-            if (response == null)
+            var idsString = "bitcoin";//cryptoCurrencyRates.Select(rate => rate.FromCuryID).Join(",");
+            restRequest = restRequest.AddParameter("vs_currencies", filter.CuryID)
+                                     .AddParameter("ids", idsString);
+
+			var ratesResponse = _client.Execute<PricesRequest>(restRequest);
+
+            if (ratesResponse == null)
                 return cryptoCurrencyRatesFromExternalApi;
 
+            if (ratesResponse.ErrorException != null)
+            {
+                throw ratesResponse.ErrorException;
+            }
+
+			foreach (CryptoCurrencyRateInfo currency in ratesResponse.Data.Currencies)
+			{
+                cryptoCurrencyRatesFromExternalApi.Add(currency.CryproCurrencyName, currency.Rate.Rate);
+            }   
 
             return cryptoCurrencyRatesFromExternalApi;
         }

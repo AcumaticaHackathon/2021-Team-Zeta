@@ -49,8 +49,8 @@
     <Reference Include="PX.Objects">
       <HintPath>..\Hackathon_21_110_0032\Bin\PX.Objects.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp, Version=106.0.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.106.8.10-alpha.0.15\lib\net452\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp, Version=106.8.10.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.11.5\lib\net452\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -14,7 +14,7 @@ namespace Hackathon
 
 		[PXDBBool()]
 		[PXDefault(false)]
-		[PXUIField(DisplayName = "Is Crypto Currency", Enabled = false)]
+		[PXUIField(DisplayName = "Is Crypto Currency")]
 		public bool? UsrIsCryptoCurrency { get; set; }
 		#endregion
 	}

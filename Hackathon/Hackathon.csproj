@@ -66,10 +66,9 @@
     <Compile Include="DAC\Dummy.cs" />
     <Compile Include="Extension\DAC\CurrencyRateTypeCryptoExt.cs" />
     <Compile Include="Extension\DAC\CashAccountCryptoExt.cs" />
-    <Compile Include="Extension\DAC\Dummy.cs" />
+    <Compile Include="Extension\Graph\APReleaseProcessExtension.cs" />
     <Compile Include="Extension\Graph\RefreshCryptoCurrencyRatesExtension.cs" />
     <Compile Include="Extension\Graph\CashAccountMaintExtension.cs" />
-    <Compile Include="Extension\Graph\Dummy.cs" />
     <Compile Include="Graph\Dummy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

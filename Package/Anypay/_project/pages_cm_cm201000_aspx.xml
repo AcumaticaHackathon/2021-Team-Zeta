@@ -3,7 +3,7 @@
 		<Children Key="Columns">
 			<AddItem>
 				<PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
-					<Prop Key="DataField" Value="IsCryptoCurrency" />
+					<Prop Key="DataField" Value="UsrIsCryptoCurrency" />
 					<Prop Key="Type" Value="CheckBox" />
 					<Prop Key="CommitChanges" Value="True" />
 					<Prop Key="TextAlign" Value="Center" />

@@ -1,0 +1,14 @@
+﻿<Page path="~/pages/cm/cm201000.aspx" pageSource="jVVLc9owED4nM/kPGndyLJBMT4nplBjSZAYSBpPHrSPsBRRkyZVkHjn0t3fXNsS80t7klfbbb7992D//wfp8AqzL1STDQ9MLvnisx60DQxe3QqLtT/3DYutdYd2zgEUtyY0ea2VOd+ag3IswkKVNz5kMPPbMpYi5gwH8zsC6pjfm0qI90HGJG/QuGxeNRqPGbbqsRdZj92oKRjjb9CjWr/UDjw2FI48n5egQ56w9dv797PTs1McsCoLDVQrsWRiXcdnnbvpP6gTgY/SrQCuHGbD7dtOL8HxBPHNTX/II7rSMwdBlOm2HHjOZ4phRCGaOMAhy4qfLq/5rmzse6sxEkCPFmNKLiIkIpnG+8bOFX65cwKW84dGs6Q1z2fpGJNysiCYqlJnVADWkxAYQaUOI9PHAE5Sj/1p7HL1B5Gwt6NXwsQEVbRx6XCiHdRBWjEi8HJ+4nvgUdIRBA50kXMU2t65zCHduWREs5PO8ekkiXDDFhgG75lwvUOuHYP36jjIkeb2i+bESXB4vQfd4BX4aEecQEzzsCX4HYjLF72+NRrrcqU3oVqTS+1ehYlheMbReMwljd8Xw8TVzOi1OWDcp9QJbSqjJWoJW5IRWtq+toAOadeqxj6zX7dCK3zLrqB1D8Y7hqAVKwBC4iaYlIAkazoQiv7Ilytp1YQ5yq2KUc27N4/UgGYE53DuF14k/0IshJKnE69JUQnX5SmdukEnYlS503LhAyyxR22Xf+OKkzTqxKCoIcTX+fXuvFET1VoCMt5nSyx3cISxdBbcNNjKfwZUPPlDq++n6RSZ2OxIJWVx8Rm+X32GvPRa7b/OaP2RSNr3bYjNWvCleZzxu8xUNPArQkmKCwg+ofz9DrWLA2ICdPiopFBRrA5OZQjS70csjk1wJFeDkobL/FaqIQaSL/k6ANs9x3rgqqvqXO2LTx+U6qXS6T3NCE5PvBFxs1OEvOKl6gf8rodaDfUk/i47iuPDine3Uw/9OIfpTKjXfvq4wOLCf/gI=">
+	<PXGridLevel DataMember="CuryRateTypeRecords" ParentId="phL_grid_Levels#0" TypeFullName="PX.Web.UI.PXGridLevel">
+		<Children Key="Columns">
+			<AddItem>
+				<PXGridColumn TypeFullName="PX.Web.UI.PXGridColumn">
+					<Prop Key="DataField" Value="IsCryptoCurrency" />
+					<Prop Key="Type" Value="CheckBox" />
+					<Prop Key="CommitChanges" Value="True" />
+					<Prop Key="TextAlign" Value="Center" />
+				</PXGridColumn>
+			</AddItem>
+		</Children>
+	</PXGridLevel>
+</Page>
